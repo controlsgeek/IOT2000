@@ -1,3 +1,6 @@
 FROM controlsgeek/iot2000_pyfmi
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+WORKDIR "/home/JModelica/bin"
+ENTRYPOINT "./test.sh"
+CMD ["tail", "-f", "/dev/null"]
+
