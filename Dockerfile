@@ -1,3 +1,3 @@
 FROM controlsgeek/iot2000_pyfmi
 
-CMD ["bash"]
+ENTRYPOINT ["tail", "-f", "/dev/null"]
