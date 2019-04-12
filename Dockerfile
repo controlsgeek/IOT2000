@@ -30,8 +30,7 @@ RUN apt-get install -y --no-install-recommends \
 	libboost-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
-WORKDIR /home
-RUN svn co https://svn.jmodelica.org/trunk JModelica.org
+COPY JModelica.org /home/JModelica.org
 
 RUN apt-get update && apt-get install make
 
@@ -39,16 +38,14 @@ WORKDIR /home/JModelica.org
 RUN rm -rf build
 RUN mkdir build
 WORKDIR /home/JModelica.org/build
-RUN ../configure --disable-openmp --prefix=/home/JModelica
+RUN "../configure --prefix=/home/JModelica --disable-openmp"
 RUN make install 
 
+COPY test.fmu /home/JModelica/bin
 COPY testfmu.py /home/JModelica/bin
 COPY test1.sh /home/JModelica/bin/test.sh
 
 RUN apt-get update && apt-get install -y python-tk
-
-WORKDIR "/home/"
-RUN rm -rf JModelica.org
 
 WORKDIR "/home/JModelica/bin"
 
