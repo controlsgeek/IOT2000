@@ -38,10 +38,10 @@ WORKDIR /home/JModelica.org
 RUN rm -rf build
 RUN mkdir build
 WORKDIR /home/JModelica.org/build
-RUN "../configure --prefix=/home/JModelica --disable-openmp"
+
+RUN ../configure --prefix=/home/JModelica --disable-openmp
 RUN make install 
 
-COPY test.fmu /home/JModelica/bin
 COPY testfmu.py /home/JModelica/bin
 COPY test1.sh /home/JModelica/bin/test.sh
 
